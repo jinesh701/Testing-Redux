@@ -18,7 +18,7 @@ describe("<GuessForm />", () => {
     expect(dispatch).toHaveBeenCalledWith(makeGuess(value));
   });
 
-  it("Should reset input when form in submitted", () => {
+  it("Should reset input when form is submitted", () => {
     const wrapper = mount(<GuessForm dispatch={() => {}} />);
     const input = wrapper.find('input[type="number"]');
     input.instance().value = '2';
