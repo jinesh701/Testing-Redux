@@ -9,7 +9,7 @@ describe("<GuessForm />", () => {
     shallow(<GuessForm />);
   });
 
-  it("Should fire the onMakeGuess callback when the form is submitted", () => {
+  it("Should dispatch makeGuess when the form is submitted", () => {
     const dispatch = jest.fn();
     const wrapper = mount(<GuessForm dispatch={dispatch} />);
     const value = "2";
@@ -18,7 +18,7 @@ describe("<GuessForm />", () => {
     expect(dispatch).toHaveBeenCalledWith(makeGuess(value));
   });
 
-  it("Should not fire onMakeGuess if the input is empty", () => {
+  it("Should reset input when form in submitted", () => {
     const wrapper = mount(<GuessForm dispatch={() => {}} />);
     const input = wrapper.find('input[type="number"]');
     input.instance().value = '2';
