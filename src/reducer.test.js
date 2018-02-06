@@ -29,6 +29,17 @@ describe("Reducer", () => {
 
 describe("restartGame", () => {
     it("Should restart the game", () => {
+        let state = {
+            guesses: [10, 20, 30],
+            feedback: "You got it",
+            correctAnswer: 30
+        }
 
+        const correctAnswer = 20;
+        state = reducer(state, restartGame(correctAnswer))
+        expect(state.guesses).toEqual([])
+        expect(state.feedback).toEqual("Make your guess!")
+        expect(state.auralStatus).toEqual('')
+        expect(state.correctAnswer).toEqual(correctAnswer)
     })
 })
