@@ -43,3 +43,33 @@ describe("restartGame", () => {
         expect(state.correctAnswer).toEqual(correctAnswer)
     })
 })
+
+describe("makeGuess", () => {
+    it("Should make a guess", () => {
+        let state = {
+            guesses: [],
+            feedback: '',
+            correctAnswer: 80
+        }
+
+        state = reducer(state, makeGuess(10))
+        expect(state.guesses).toEqual([10])
+        expect(state.feedback).toEqual("You're Ice Cold...")
+
+        state = reducer(state, makeGuess(31))
+        expect(state.guesses).toEqual([10, 31])
+        expect(state.feedback).toEqual("You're Cold...")
+
+        state = reducer(state, makeGuess(60))
+        expect(state.guesses).toEqual([10, 31, 60])
+        expect(state.feedback).toEqual("You're Warm.")
+
+        state = reducer(state, makeGuess(75))
+        expect(state.guesses).toEqual([10, 31, 60, 75])
+        expect(state.feedback).toEqual("You're Hot!")
+
+        state = reducer(state, makeGuess(80))
+        expect(state.guesses).toEqual([10, 31, 60, 75, 80])
+        expect(state.feedback).toEqual("You got it!")
+    })
+})
