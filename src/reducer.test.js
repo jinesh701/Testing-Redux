@@ -73,3 +73,16 @@ describe("makeGuess", () => {
         expect(state.feedback).toEqual("You got it!")
     })
 })
+
+describe("generateAuralUpdate", () => {
+    it("Should generate an Aural Update", () => {
+        let state = {
+            guesses: [10, 20, 30],
+            feedback: "You're Hot!",
+            auralStatus: ''
+        }
+
+        state = reducer(state, generateAuralUpdate())
+        expect(state.auralStatus).toEqual(`Here's the status of the game right now: You're Hot! You've made 3 guesses. In order of most- to least-recent, they are: 30, 20, 10`)
+    })
+})
